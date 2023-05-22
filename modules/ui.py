@@ -748,8 +748,8 @@ def create_ui():
 
                     elif category == "dimensions":
                         with FormRow():
-                            set_size_500 = ToolButton(value="500", elem_id="txt2img_set_size_500")
-                            set_size_1000 = ToolButton(value="1000", elem_id="txt2img_set_size_1000")
+                            set_size_500 = ToolButton(value="500", elem_id="img2img_set_size_500")
+                            set_size_1000 = ToolButton(value="1000", elem_id="img2img_set_size_1000")
                         with FormRow():
                             with gr.Column(elem_id="img2img_column_size", scale=4):
                                 width = gr.Slider(minimum=64, maximum=2048, step=8, label="Width", value=512, elem_id="img2img_width")
