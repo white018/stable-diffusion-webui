@@ -463,6 +463,9 @@ def create_ui():
 
                     elif category == "dimensions":
                         with FormRow():
+                            set_size_500 = ToolButton(value="500", elem_id="txt2img_set_size_500")
+                            set_size_1000 = ToolButton(value="1000", elem_id="txt2img_set_size_1000")
+                        with FormRow():
                             with gr.Column(elem_id="txt2img_column_size", scale=4):
                                 width = gr.Slider(minimum=64, maximum=2048, step=8, label="Width", value=512, elem_id="txt2img_width")
                                 height = gr.Slider(minimum=64, maximum=2048, step=8, label="Height", value=512, elem_id="txt2img_height")
@@ -577,6 +580,8 @@ def create_ui():
             submit.click(**txt2img_args)
 
             res_switch_btn.click(lambda w, h: (h, w), inputs=[width, height], outputs=[width, height], show_progress=False)
+            set_size_500.click(lambda w, h: (500, 500), inputs=[width, height], outputs=[width, height], show_progress=False)
+            set_size_1000.click(lambda w, h: (1000, 1000), inputs=[width, height], outputs=[width, height], show_progress=False)
 
             txt_prompt_img.change(
                 fn=modules.images.image_data,
@@ -742,6 +747,9 @@ def create_ui():
                         steps, sampler_index = create_sampler_and_steps_selection(samplers_for_img2img, "img2img")
 
                     elif category == "dimensions":
+                        with FormRow():
+                            set_size_500 = ToolButton(value="500", elem_id="txt2img_set_size_500")
+                            set_size_1000 = ToolButton(value="1000", elem_id="txt2img_set_size_1000")
                         with FormRow():
                             with gr.Column(elem_id="img2img_column_size", scale=4):
                                 width = gr.Slider(minimum=64, maximum=2048, step=8, label="Width", value=512, elem_id="img2img_width")
