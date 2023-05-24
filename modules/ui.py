@@ -464,6 +464,7 @@ def create_ui():
                     elif category == "dimensions":
                         with FormRow():
                             set_size_500 = ToolButton(value="500", elem_id="txt2img_set_size_500")
+                            set_size_800 = ToolButton(value="800", elem_id="txt2img_set_size_800")
                             set_size_1000 = ToolButton(value="1000", elem_id="txt2img_set_size_1000")
                         with FormRow():
                             with gr.Column(elem_id="txt2img_column_size", scale=4):
@@ -581,6 +582,7 @@ def create_ui():
 
             res_switch_btn.click(lambda w, h: (h, w), inputs=[width, height], outputs=[width, height], show_progress=False)
             set_size_500.click(lambda w, h: (500, 500), inputs=[width, height], outputs=[width, height], show_progress=False)
+            set_size_800.click(lambda w, h: (800, 800), inputs=[width, height], outputs=[width, height], show_progress=False)
             set_size_1000.click(lambda w, h: (1000, 1000), inputs=[width, height], outputs=[width, height], show_progress=False)
 
             txt_prompt_img.change(
@@ -749,6 +751,7 @@ def create_ui():
                     elif category == "dimensions":
                         with FormRow():
                             set_size_500 = ToolButton(value="500", elem_id="img2img_set_size_500")
+                            set_size_800 = ToolButton(value="800", elem_id="img2img_set_size_800")
                             set_size_1000 = ToolButton(value="1000", elem_id="img2img_set_size_1000")
                         with FormRow():
                             with gr.Column(elem_id="img2img_column_size", scale=4):
