@@ -74,6 +74,10 @@ document.addEventListener('keydown', function(e) {
         if(((e.keyCode == 13 || e.key == 32) && (e.metaKey || e.ctrlKey || e.altKey))) handled = true;
     }
     if (handled) {
+        button = get_uiCurrentTabContent().querySelector('button[id$=_style_apply]');
+        if (button) {
+            button.click();
+        }
         button = get_uiCurrentTabContent().querySelector('button[id$=_generate]');
         if (button) {
             button.click();
