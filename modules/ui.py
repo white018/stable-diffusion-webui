@@ -457,6 +457,8 @@ def create_ui():
 
         with gr.Row().style(equal_height=False):
             with gr.Column(variant='compact', elem_id="txt2img_settings"):
+                with FormRow():
+                    hires_one = ToolButton(value="hires one", elem_id="txt2img_hires")
                 for category in ordered_ui_categories():
                     if category == "sampler":
                         steps, sampler_index = create_sampler_and_steps_selection(samplers, "txt2img")
@@ -580,6 +582,28 @@ def create_ui():
             txt2img_prompt.submit(**txt2img_args)
             submit.click(**txt2img_args)
 
+            def on_hires(hr, batch_count, seed, gen_info_string, index):
+                tmp_bc = 6
+                try:
+                    gen_info = json.loads(gen_info_string)
+                    index -= gen_info.get('index_of_first_image', 0)
+                    all_seeds = gen_info.get('all_seeds', [-1])
+                    new_seed = all_seeds[index if 0 <= index < len(all_seeds) else 0]
+                    new_seed = new_seed if seed == -1 else -1
+                    new_batch_count = tmp_bc if batch_count == 1 else 1
+                    return [not hr, new_batch_count, new_seed, gr_show(False)]
+                except json.decoder.JSONDecodeError as e:
+                    if gen_info_string != '':
+                        print("Error parsing JSON generation info:", file=sys.stderr)
+                        print(gen_info_string, file=sys.stderr)
+
+            hires_one.click(
+                on_hires,
+                _js="(x, y, z, a, b) => [x, y, z, a, selected_gallery_index()]",
+                inputs=[enable_hr, batch_count, seed, generation_info, dummy_component],
+                outputs=[enable_hr, batch_count, seed, dummy_component],
+                show_progress=False
+            )
             res_switch_btn.click(lambda w, h: (h, w), inputs=[width, height], outputs=[width, height], show_progress=False)
             set_size_500.click(lambda w, h: (500, 500), inputs=[width, height], outputs=[width, height], show_progress=False)
             set_size_800.click(lambda w, h: (800, 800), inputs=[width, height], outputs=[width, height], show_progress=False)
@@ -744,6 +768,8 @@ def create_ui():
                 with FormRow():
                     resize_mode = gr.Radio(label="Resize mode", elem_id="resize_mode", choices=["Just resize", "Crop and resize", "Resize and fill", "Just resize (latent upscale)"], type="index", value="Just resize")
 
+                with FormRow():
+                    hires_one = ToolButton(value="hires one", elem_id="img2img_hires")
                 for category in ordered_ui_categories():
                     if category == "sampler":
                         steps, sampler_index = create_sampler_and_steps_selection(samplers_for_img2img, "img2img")
