@@ -591,7 +591,7 @@ def create_ui():
                     new_hr = not hr
                     new_seed = all_seeds[index if 0 <= index < len(all_seeds) else 0]
                     new_seed = new_seed if new_hr else -1
-                    new_batch_count = tmp_bc if new_hr else 1
+                    new_batch_count = 1 if new_hr else tmp_bc
                     return [new_hr, new_batch_count, new_seed, gr_show(False)]
                 except json.decoder.JSONDecodeError:
                     if gen_info_string != '':
