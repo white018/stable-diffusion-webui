@@ -588,11 +588,12 @@ def create_ui():
                     gen_info = json.loads(gen_info_string)
                     index -= gen_info.get('index_of_first_image', 0)
                     all_seeds = gen_info.get('all_seeds', [-1])
+                    new_hr = not hr
                     new_seed = all_seeds[index if 0 <= index < len(all_seeds) else 0]
-                    new_seed = new_seed if seed == -1 else -1
-                    new_batch_count = tmp_bc if batch_count == 1 else 1
-                    return [not hr, new_batch_count, new_seed, gr_show(False)]
-                except json.decoder.JSONDecodeError as e:
+                    new_seed = new_seed if new_hr else -1
+                    new_batch_count = tmp_bc if new_hr else 1
+                    return [new_hr, new_batch_count, new_seed, gr_show(False)]
+                except json.decoder.JSONDecodeError:
                     if gen_info_string != '':
                         print("Error parsing JSON generation info:", file=sys.stderr)
                         print(gen_info_string, file=sys.stderr)
