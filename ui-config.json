@@ -46,7 +46,7 @@
     "txt2img/Resize height to/maximum": 2048,
     "txt2img/Resize height to/step": 100,
     "txt2img/Width/visible": true,
-    "txt2img/Width/value": 800,
+    "txt2img/Width/value": 600,
     "txt2img/Width/minimum": 100,
     "txt2img/Width/maximum": 2000,
     "txt2img/Width/step": 100,
