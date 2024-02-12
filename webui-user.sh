@@ -10,11 +10,13 @@ install_dir="/j/download/stablediffusion/"
 #clone_dir="stable-diffusion-webui"
 
 # Commandline arguments for webui.py, for example: export COMMANDLINE_ARGS="--medvram --opt-split-attention"
-export COMMANDLINE_ARGS="--xformers --medvram"
+# export COMMANDLINE_ARGS="--xformers --medvram"
+export COMMANDLINE_ARGS="--medvram"
 
 # python3 executable
 # python_cmd="/c/Windows/py"
-python_cmd="/c/Windows/py -3.10"
+# python_cmd="/c/Windows/py -3.10"
+python_cmd="python3"
 
 # git executable
 #export GIT="git"
