@@ -36,3 +36,5 @@ notification.mp3
 /package-lock.json
 /.coverage*
 *.lnk
+/test/test_outputs
+/cache
