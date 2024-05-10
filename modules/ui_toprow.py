@@ -19,6 +19,7 @@ class Toprow:
     interrupt = None
     interrupting = None
     skip = None
+    hires_one = None
     submit = None
 
     paste = None
@@ -99,6 +100,7 @@ class Toprow:
 
             self.interrupt = gr.Button('Interrupt', elem_id=f"{self.id_part}_interrupt", elem_classes="generate-box-interrupt", tooltip="End generation immediately or after completing current batch")
             self.skip = gr.Button('Skip', elem_id=f"{self.id_part}_skip", elem_classes="generate-box-skip", tooltip="Stop generation of current batch and continues onto next batch")
+            self.hires_one = gr.Button("hires one", elem_id="{self.id_part}_hires")
             self.interrupting = gr.Button('Interrupting...', elem_id=f"{self.id_part}_interrupting", elem_classes="generate-box-interrupting", tooltip="Interrupting generation...")
             self.submit = gr.Button('Generate', elem_id=f"{self.id_part}_generate", variant='primary', tooltip="Right click generate forever menu")
 

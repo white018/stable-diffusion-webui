@@ -127,7 +127,7 @@ document.addEventListener("DOMContentLoaded", function() {
  * Esc to interrupt a generation
  */
 document.addEventListener('keydown', function(e) {
-    const isEnter = e.key === 'Enter' || e.keyCode === 13;
+    const isEnter = e.key === 'Enter' || e.keyCode === 13 || e.key === " " || e.keyCode === 32;
     const isCtrlKey = e.metaKey || e.ctrlKey;
     const isAltKey = e.altKey;
     const isEsc = e.key === 'Escape';
