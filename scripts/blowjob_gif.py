@@ -17,9 +17,9 @@ class Script(scripts.Script):
         return True
 
     def ui(self, is_txt2img):
-        num_cuts = gr.inputs.Slider(minimum=2, maximum=8, default=2, step=1, label="Number of cuts/slices")
-        gif_duration = gr.inputs.Slider(minimum=5, maximum=1000, default=150, step=5, label="GIF duration (ms)")
-        ping_pong_checkbox = gr.inputs.Checkbox(label="Ping-pong animation", default=True)
+        num_cuts = gr.Slider(minimum=2, maximum=8, default=2, step=1, label="Number of cuts/slices")
+        gif_duration = gr.Slider(minimum=5, maximum=1000, default=150, step=5, label="GIF duration (ms)")
+        ping_pong_checkbox = gr.Checkbox(label="Ping-pong animation", default=True)
         return [num_cuts, gif_duration, ping_pong_checkbox]
     
     def cut_image(self, image, num_cuts):
