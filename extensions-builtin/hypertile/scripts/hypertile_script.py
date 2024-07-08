@@ -1,6 +1,9 @@
 import hypertile
 from modules import scripts, script_callbacks, shared
-from scripts.hypertile_xyz import add_axis_options
+from pathlib import Path
+import sys
+sys.path.append(str(Path(__file__).parent))
+from hypertile_xyz import add_axis_options
 
 
 class ScriptHypertile(scripts.Script):
