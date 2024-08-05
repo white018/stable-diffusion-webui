@@ -165,13 +165,12 @@ case "$gpu_info" in
 esac
 if ! echo "$gpu_info" | grep -q "NVIDIA";
 then
-    export TORCH_COMMAND="pip3 install torch torchvision --extra-index-url https://download.pytorch.org/whl/rocm5.2"
     if echo "$gpu_info" | grep -q "AMD" && [[ -z "${TORCH_COMMAND}" ]]
     then
-	      export TORCH_COMMAND="pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/rocm5.7"
+	      export TORCH_COMMAND="pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/rocm5.7"
     elif npu-smi info 2>/dev/null
     then
-        export TORCH_COMMAND="pip3 install torch==2.1.0 torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu; pip3 install torch_npu==2.1.0"
+        export TORCH_COMMAND="pip install torch==2.1.0 torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu; pip install torch_npu==2.1.0"
     fi
 fi
 
@@ -186,7 +185,7 @@ do
     fi
 done
 
-if [[ $use_venv -eq 1 ]] && ! ${python_cmd} -c "import venv" &>/dev/null
+if [[ $use_venv -eq 1 ]] && ! "${python_cmd}" -c "import venv" &>/dev/null
 then
     printf "\n%s\n" "${delimiter}"
     printf "\e[1m\e[31mERROR: python3-venv is not installed, aborting...\e[0m"
@@ -214,7 +213,7 @@ then
     cd "${install_dir}"/"${clone_dir}"/ || { printf "\e[1m\e[31mERROR: Can't cd to %s/%s/, aborting...\e[0m" "${install_dir}" "${clone_dir}"; exit 1; }
     if [[ ! -d "${venv_dir}" ]]
     then
-        ${python_cmd} -m venv "${venv_dir}"
+        "${python_cmd}" -m venv "${venv_dir}"
         "${venv_dir}"/bin/python -m pip install --upgrade pip
         first_launch=1
     fi
@@ -296,7 +295,7 @@ while [[ "$KEEP_GOING" -eq "1" ]]; do
         printf "Launching launch.py..."
         printf "\n%s\n" "${delimiter}"
         prepare_tcmalloc
-        ${python_cmd} -u "${LAUNCH_SCRIPT}" "$@"
+        "${python_cmd}" -u "${LAUNCH_SCRIPT}" "$@"
     fi
 
     if [[ ! -f tmp/restart ]]; then
