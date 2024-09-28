@@ -4,7 +4,7 @@
 #########################################################
 
 # Install directory without trailing slash
-install_dir="/j/download/stablediffusion/"
+install_dir="/mnt/j/download/stablediffusion/stable-diffusion-webui"
 
 # Name of the subdirectory
 #clone_dir="stable-diffusion-webui"
