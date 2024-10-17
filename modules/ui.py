@@ -428,7 +428,9 @@ def create_ui():
             toprow.submit.click(**txt2img_args)
 
             def on_hires(hr, batch_count, seed, gen_info_string, index):
-                tmp_bc = 3
+                global tmp_bc
+                if not hr:
+                    tmp_bc = batch_count
                 try:
                     gen_info = json.loads(gen_info_string)
                     index -= gen_info.get('index_of_first_image', 0)
